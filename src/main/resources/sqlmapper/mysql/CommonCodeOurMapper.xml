@@ -20,4 +20,9 @@
         WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
     </update>
 
+    <delete id="deleteByUID" parameterType="Map">
+        DELETE FROM CIP_COMMON_CODE
+        WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
+    </delete>
+
 </mapper>

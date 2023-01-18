@@ -16,6 +16,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
         <th>코드 ID</th>
         <th>코드명</th>
         <th>부모 코드 ID</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -41,6 +42,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
                 ${resultData.PARENT_COMMON_CODE_ID}
               </button>
             </div>
+          </td>
+          <td>
+            <form
+              action="/commonCode_Our/delete/${resultData.COMMON_CODE_ID}"
+              method="get"
+            >
+              <button class="btn btn-outline-info">
+                ${resultData.COMMON_CODE_ID}
+              </button>
+            </form>
           </td>
         </tr>
       </c:forEach>
