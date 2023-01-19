@@ -17,8 +17,15 @@ public class CommonCodeOurService {
 
     }
 
+    public Object insertOneAndGetList(Object dataMap) {
+        Object result = this.insertOne(dataMap);
+        result = this.getList(dataMap);
+        return result;
+
+    }
+
     public Object updateAndGetList(Object dataMap) {
-        Object result = this.update(dataMap);/* 이미 이 클래스 내에서 delete가 있기 때문 */
+        Object result = this.update(dataMap);
         result = this.getList(dataMap);
         return result;
     }
