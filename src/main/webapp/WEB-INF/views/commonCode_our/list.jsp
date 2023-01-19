@@ -7,8 +7,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
   integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
   crossorigin="anonymous"
 />
-
 <div class="container">
+  <td>
+    <form action="/commonCodeOur/form" method="get">
+      <button class="btn btn-info">Form</button>
+    </form>
+  </td>
   <table class="table table-striped table-hover table-bordered">
     <thead>
       <tr class="text-center">
@@ -27,7 +31,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
           </td>
           <td>
             <form
-              action="/commonCode_Our/edit/${resultData.COMMON_CODE_ID}"
+              action="/commonCodeOur/edit/${resultData.COMMON_CODE_ID}"
               method="get"
             >
               <button class="btn btn-link viewPopup">
@@ -45,17 +49,15 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
           </td>
           <td>
             <form
-              action="/commonCode_Our/delete/${resultData.COMMON_CODE_ID}"
-              method="get"
+              action="/commonCodeOur/delete/${resultData.COMMON_CODE_ID}"
+              method="post"
             >
-              <button class="btn btn-outline-info">
-                ${resultData.COMMON_CODE_ID}
-              </button>
+              <button class="btn outline-info">Delete</button>
             </form>
           </td>
         </tr>
       </c:forEach>
     </tbody>
   </table>
-  <!-- /.table-responsive -->
 </div>
+<!-- /.table-responsive -->

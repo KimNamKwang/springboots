@@ -31,7 +31,7 @@
       <a href="/commonCode/list">commonCode/list.jsp</a>
     </div>
     <div>
-      <a href="/commonCode_our/list">commonCode_our/list.jsp</a>
+      <a href="/commonCodeOur/list">commonCodeOur/list.jsp</a>
     </div>
   </body>
 </html>
