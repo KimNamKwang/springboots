@@ -2,6 +2,8 @@ package com.example.springboots.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +41,18 @@ public class CommonCodeOurController {
         params.put("COMMON_CODE_ID", uniqueId);
         Object resultMap = commonCodeOurService.deleteAndGetList(params);
         modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = { "/deleteMulti" }, method = RequestMethod.GET)
+    public ModelAndView deleteMulti(HttpServletRequest httpServletRequest, @RequestParam Map<String, Object> params,
+            ModelAndView modelAndView) {
+        // modelAndView.addObject("resultMap", resultMap);
+        String[] deleteMultis = httpServletRequest.getParameterMap().get("COMMON_CODE_ID");
+        params.put("deleteMultis", deleteMultis);
+        Object resultMap = commonCodeOurService.deleteMulti(params);
+
         modelAndView.setViewName("commonCode_our/list");
         return modelAndView;
     }

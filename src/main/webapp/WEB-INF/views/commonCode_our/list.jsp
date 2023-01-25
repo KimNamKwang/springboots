@@ -13,6 +13,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
       <button class="btn btn-info">Form</button>
     </form>
   </td>
+  <td>
+    <form action="/commonCodeOur/deleteMulti" method="get">
+      <button class="btn btn-info">delete Multi</button>
+  </td>
   <table class="table table-striped table-hover table-bordered">
     <thead>
       <tr class="text-center">
@@ -27,7 +31,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
       <c:forEach items="${resultMap}" var="resultData" varStatus="loop">
         <tr>
           <td class="text-center">
-            <input type="checkbox" class="checkbox" name="COMMON_CODE_ID" />
+            <input
+              type="checkbox"
+              class="checkbox"
+              name="COMMON_CODE_ID"
+              value="${resultData.COMMON_CODE_ID}"
+            />
           </td>
           <td>
             <form
@@ -59,5 +68,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
       </c:forEach>
     </tbody>
   </table>
+</form>
 </div>
 <!-- /.table-responsive -->

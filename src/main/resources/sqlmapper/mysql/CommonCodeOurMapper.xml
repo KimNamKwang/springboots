@@ -25,11 +25,25 @@
         WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
     </delete>
 
+   <delete id="deleteMultiByUIDs" parameterType="Map">
+        DELETE FROM CIP_COMMON_CODE
+        WHERE COMMON_CODE_ID IN 
+            <foreach collection="deleteMultis" item="item" 
+                open="(" separator="," close=")">
+                #{item}
+            <!-- 'No', 'System_Code_YN' -->
+            </foreach>
+    </delete>
+
+
     <insert id="insertWithUID" parameterType="Map">
     insert into CIP_COMMON_CODE 
     (COMMON_CODE_ID,NAME,ORDER_NUMBER,ATTRIBUTION_1,ATTRIBUTION_2,DESCRIPTION,
-    SYSTEM_CODE_YN,USE_YN,PARENT_COMMON_CODE_ID,REGISTER_SEQ,REGISTRY_DATE,MODIFIER_SEQ,MODIFY_DATE) 
-    VALUE (#{COMMON_CODE_ID},#{NAME},#{ORDER_NUMBER},NULL,NULL,#{DESCRIPTION}
+    SYSTEM_CODE_YN,USE_YN,PARENT_COMMON_CODE_ID,REGISTER_SEQ,REGISTRY_DATE,MODIFY_DATE,MODIFIER_SEQ) 
+    VALUE 
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+    #{COMMON_CODE_ID},#{NAME},#{ORDER_NUMBER},NULL,NULL,#{DESCRIPTION}
+
     <choose>
     <when test="SYSTEM_CODE_YN != null">
         , 'Yes'
@@ -47,7 +61,12 @@
         , 'No'
     </otherwise>
     </choose>
-    ,NULL,#{REGISTER_SEQ},sysdate(),#{MODIFIER_SEQ},sysdate())
+    ,NULL,#{REGISTER_SEQ},sysdate(),sysdate(),
+    
+    <if test="MODIFIER_SEQ != null">
+    #{MODIFIER_SEQ},
+    </if>
+    </trim>
     </insert>
 
 </mapper>
