@@ -8,66 +8,66 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
   crossorigin="anonymous"
 />
 <div class="container">
-  <td>
-    <form action="/commonCodeOur/form" method="get">
-      <button class="btn btn-info">Form</button>
-    </form>
-  </td>
-  <td>
-    <form action="/commonCodeOur/deleteMulti" method="get">
-      <button class="btn btn-info">delete Multi</button>
-  </td>
-  <table class="table table-striped table-hover table-bordered">
-    <thead>
-      <tr class="text-center">
-        <th><input type="checkbox" id="selectall" /></th>
-        <th>코드 ID</th>
-        <th>코드명</th>
-        <th>부모 코드 ID</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <c:forEach items="${resultMap}" var="resultData" varStatus="loop">
-        <tr>
-          <td class="text-center">
-            <input
-              type="checkbox"
-              class="checkbox"
-              name="COMMON_CODE_ID"
-              value="${resultData.COMMON_CODE_ID}"
-            />
-          </td>
-          <td>
-            <form
-              action="/commonCodeOur/edit/${resultData.COMMON_CODE_ID}"
-              method="get"
-            >
-              <button class="btn btn-link viewPopup">
-                ${resultData.COMMON_CODE_ID}
-              </button>
-            </form>
-          </td>
-          <td>${resultData.NAME}</td>
-          <td class="text-center">
-            <div class="btn-group">
-              <button class="btn btn-outline-info" name="PARENT_COMMON_CODE_ID">
-                ${resultData.PARENT_COMMON_CODE_ID}
-              </button>
-            </div>
-          </td>
-          <td>
-            <form
-              action="/commonCodeOur/delete/${resultData.COMMON_CODE_ID}"
-              method="post"
-            >
-              <button class="btn outline-info">Delete</button>
-            </form>
-          </td>
+  <form action="/commonCodeOur/form" method="get">
+    <button class="btn btn-info">Form</button>
+  </form>
+
+  <form action="/commonCodeOur/deleteMulti" method="post">
+    <button class="btn btn-info">delete Multi</button>
+    <table class="table table-striped table-hover table-bordered">
+      <thead>
+        <tr class="text-center">
+          <th><input type="checkbox" id="selectall" /></th>
+          <th>코드 ID</th>
+          <th>코드명</th>
+          <th>부모 코드 ID</th>
+          <th>Delete</th>
         </tr>
-      </c:forEach>
-    </tbody>
-  </table>
-</form>
+      </thead>
+      <tbody>
+        <c:forEach items="${resultMap}" var="resultData" varStatus="loop">
+          <tr>
+            <td class="text-center">
+              <input
+                type="checkbox"
+                class="checkbox"
+                name="COMMON_CODE_ID"
+                value="${resultData.COMMON_CODE_ID}"
+              />
+            </td>
+            <td>
+              <form
+                action="/commonCodeOur/edit/${resultData.COMMON_CODE_ID}"
+                method="get"
+              >
+                <button class="btn btn-link viewPopup">
+                  ${resultData.COMMON_CODE_ID}
+                </button>
+              </form>
+            </td>
+            <td>${resultData.NAME}</td>
+            <td class="text-center">
+              <div class="btn-group">
+                <button
+                  class="btn btn-outline-info"
+                  name="PARENT_COMMON_CODE_ID"
+                >
+                  ${resultData.PARENT_COMMON_CODE_ID}
+                </button>
+              </div>
+            </td>
+            <td>
+              <form
+                action="/commonCodeOur/delete/${resultData.COMMON_CODE_ID}"
+                method="post"
+              >
+                <button class="btn btn-outline-info">Delete</button>
+              </form>
+            </td>
+          </tr>
+        </c:forEach>
+      </tbody>
+    </table>
+  </form>
 </div>
 <!-- /.table-responsive -->

@@ -9,11 +9,17 @@
 			<c:if test="${empty resultMap}">
 			<c:set var="form_action" value="insert"/>
 			</c:if>
-			<form action="/commonCodeOur/${form_action}" method="post">
+			<form action="/commonCodeOur/${form_action}" method="post"enctype = "multipart/form-data" >
 			<input type="hidden" name="REGISTER_SEQ" value="UUID-1111-1111111">
 			<input type="hidden" name="MODIFIER_SEQ" value="UUID-1111-1111111">
 
 			<input type="hidden" name="PARENT_COMMON_CODE_ID" value="${resultMap.PARENT_COMMON_CODE_ID}">
+			
+			<div class="form-group form-row">
+			<label class="form-label">File Upload</label>
+			<input type="file" name="file_first" class="form-control">
+			</div>
+			
 			<div class="form-group form-row">
 				<div class="col">
 					<label>코드 ID</label> <input class="form-control" type="text"
