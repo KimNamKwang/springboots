@@ -11,6 +11,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
   <form action="/commonCodeOur/form" method="get">
     <button class="btn btn-info">Form</button>
   </form>
+  <form action="/commonCodeOur/formMulti" method="get">
+    <button class="btn btn-info">Form Multi</button>
+  </form>
 
   <form action="/commonCodeOur/deleteMulti" method="post">
     <button class="btn btn-info">delete Multi</button>
