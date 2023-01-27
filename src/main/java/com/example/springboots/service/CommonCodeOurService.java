@@ -1,5 +1,8 @@
 package com.example.springboots.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,19 @@ public class CommonCodeOurService {
 
     @Autowired
     AttachFileService attachFileService;
+
+    public Object getOneWithAttachFiles(Object dataMap) {
+        // Attach Files ArrayList<Map>
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        result.put("attachFiles", attachFileService.getList(dataMap));
+
+        /*
+         * 위에서 넣은 result가 사라지지 않게 하기 위해 putAll사용. putAll은 같은 key가 아니면 자동으로 list에다가 put을
+         * 해준다
+         */
+        result.putAll((Map<String, Object>) this.getOne(dataMap));
+        return result;
+    }
 
     public Object deleteAndGetList(Object dataMap) {
         Object result = this.delete(dataMap);/* 이미 이 클래스 내에서 delete가 있기 때문 */

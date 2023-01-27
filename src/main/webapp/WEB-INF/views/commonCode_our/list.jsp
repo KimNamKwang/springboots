@@ -12,7 +12,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
     <button class="btn btn-info">Form</button>
   </form>
   <form action="/commonCodeOur/formMulti" method="get">
-    <button class="btn btn-info">Form Multi</button>
+    <button class="btn btn-info">FormMulti</button>
   </form>
 
   <form action="/commonCodeOur/deleteMulti" method="post">
@@ -22,6 +22,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
         <tr class="text-center">
           <th><input type="checkbox" id="selectall" /></th>
           <th>코드 ID</th>
+          <th>코드 ID with Files</th>
           <th>코드명</th>
           <th>부모 코드 ID</th>
           <th>Delete</th>
@@ -45,6 +46,16 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
               >
                 <button class="btn btn-link viewPopup">
                   ${resultData.COMMON_CODE_ID}
+                </button>
+              </form>
+            </td>
+            <td>
+              <form
+                action="/commonCodeOur/editMulti/${resultData.COMMON_CODE_ID}"
+                method="get"
+              >
+                <button class="btn btn-link viewPopup">
+                  ${resultData.COMMON_CODE_ID} Multi
                 </button>
               </form>
             </td>

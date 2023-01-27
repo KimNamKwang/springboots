@@ -5,24 +5,24 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
 
 		<div class="container">
-			<c:set var="form_action" value="update"/>
+			<c:set var="form_action" value="updateMulti" />
 			<c:if test="${empty resultMap}">
-			<c:set var="form_action" value="insertMulti"/>
+				<c:set var="form_action" value="insertMulti" />
 			</c:if>
-			<form action="/commonCodeOur/${form_action}" method="post"enctype = "multipart/form-data" >
-			<input type="hidden" name="REGISTER_SEQ" value="UUID-1111-1111111">
-			<input type="hidden" name="MODIFIER_SEQ" value="UUID-1111-1111111">
-
-			<input type="hidden" name="PARENT_COMMON_CODE_ID" value="${resultMap.PARENT_COMMON_CODE_ID}">
 			
-			<div class="form-group form-row">
-				<label class="form-label">File Upload</label>
-				<input type="file" name="file_first" class="form-control">
-			</div>
-			<div class="form-group form-row">
-				<label class="form-label">File Upload</label>
-				<input type="file" name="file_second" class="form-control">
-			</div>
+			<form action="/commonCodeOur/${form_action}" method="post" enctype ="multipart/form-data">
+			<input type="hidden" name="REGISTER_SEQ" value="UUID-1111-1111111" >
+			<input type="hidden" name="MODIFIER_SEQ" value="UUID-1111-1111111" >
+			<input type="hidden" name="PARENT_COMMON_CODE_ID" value="${resultMap.PARENT_COMMON_CODE_ID}">
+			<%-- map으로 넣어준 것과 service에서 한번 더 넣어줬기 때문에 key의 key로 호출--%>
+			<c:forEach items="${resultMap.attachFiles}" var="resultData" varStatus="loop">
+				<div class="form-group form-row">
+					<label class="form-label">File Upload</label>
+					<input type="file" name="file_${loop.index}" class="form-control"> 
+					<a href="/files/${resultData.PHYSICALFILE_NAME}/${resultData.ORGINALFILE_NAME}">${resultData.ORGINALFILE_NAME}</a>
+					<input type="hidden" name="file_${loop.index}" value="${resultData.ATTACHFILE_SEQ}" />
+				</div>
+			</c:forEach>
 			
 			<div class="form-group form-row">
 				<div class="col">
