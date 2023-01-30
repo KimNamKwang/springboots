@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.springboots.Paginations;
 import com.example.springboots.dao.CommonCodeOurDao;
 
 @Service
@@ -55,6 +56,23 @@ public class CommonCodeOurService {
     public Object updateAndGetList(Object dataMap) {
         Object result = this.update(dataMap);
         result = this.getList(dataMap);
+        return result;
+    }
+
+    public Object getListWithPagination(Object dataMap) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        int totalCount = (int) this.getTotal(dataMap);
+        int currentPage = (int) ((HashMap<String, Object>) dataMap).get("currentPage");
+        Paginations paginations = new Paginations(totalCount, currentPage);
+        result.put("paginations", paginations);
+        ((HashMap<String, Object>) dataMap).put("pageBegin", paginations.getPageBegin());
+        result.put("resultList", this.getList(dataMap));
+        return result;
+    }
+
+    public Object getTotal(Object dataMap) {
+        String sqlMapId = "CommonCodeOur.selectTotal";
+        Object result = commonCodeOurDao.getOne(sqlMapId, dataMap);
         return result;
     }
 

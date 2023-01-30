@@ -5,12 +5,21 @@
     <select id="selectListByUID" parameterType="Map" resultType="Map">
         SELECT * 
         FROM CIP_COMMON_CODE
+        <if test="pageScale != null">
+        ORDER BY COMMON_CODE_ID
+        LIMIT #{pageBegin}, #{pageScale}
+        </if>
     </select>
     
     <select id="selectByUID" parameterType="Map" resultType="Map">
        SELECT * 
        FROM CIP_COMMON_CODE
        WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
+    </select>
+
+<select id="selectTotal" parameterType="Map" resultType="int">
+       SELECT count(*) as cnt 
+       FROM CIP_COMMON_CODE
     </select>
 
     <update id="updateByUID" parameterType="Map">
