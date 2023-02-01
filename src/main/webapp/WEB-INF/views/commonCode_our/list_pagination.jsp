@@ -89,14 +89,13 @@ uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
               </button>
             </td>
             <td>
-              <form
-                action="/commonCodeOur/editMulti/${resultData.COMMON_CODE_ID}"
-                method="get"
+              <button
+                class="btn btn-link viewPopup"
+                formaction="/commonCodeOur/editMulti/${resultData.COMMON_CODE_ID}"
+                formmethod="get"
               >
-                <button class="btn btn-link viewPopup">
-                  ${resultData.COMMON_CODE_ID} Multi
-                </button>
-              </form>
+                ${resultData.COMMON_CODE_ID} Multi
+              </button>
             </td>
             <td>${resultData.NAME}</td>
             <td class="text-center">
